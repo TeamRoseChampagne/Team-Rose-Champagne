@@ -55,6 +55,8 @@ function initCanvas() {
     }
     var animateInterval = setInterval(animate, 15);
     function upperSpikes() {
+        ctx.fillStyle='#BE2116';
+        ctx.fill();
         ctx.beginPath();
         ctx.moveTo(25,0);
         ctx.lineTo(50, 25);
@@ -80,6 +82,8 @@ function initCanvas() {
     }
 
     function lowerSpikes() {
+        ctx.fillStyle='#BE2116';
+        ctx.fill();
         ctx.beginPath();
         ctx.moveTo(25,600);
         ctx.lineTo(50, 575);

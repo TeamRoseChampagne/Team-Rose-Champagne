@@ -10,13 +10,16 @@ function initCanvas() {
     var yDirection = 1;
 
     function animate() {
-
         ctx.save();
         ctx.clearRect(0, 0, cW, cH);
 
         ctx.drawImage(bird, birdX, birdY);
-        birdX += 2 * xDirection;
-        birdY += 5 * yDirection;
+        //game speed controls
+        var game = true;
+        if (game) {
+            birdX += 2 * xDirection;
+            birdY += 5 * yDirection;
+        }
 
         if(birdX >= 450) {
             birdX = 450;
@@ -28,7 +31,7 @@ function initCanvas() {
             xDirection = 1;
             bird.src = 'img/birdR.png';
         }
-        if(birdY >= 540) {
+        if (birdY >= 540) {
             birdY = 540;
             yDirection = 0;
         }
@@ -37,26 +40,25 @@ function initCanvas() {
             yDirection = 1;
         }
         function jump() {
-
-            var maxJump = birdY - 50;
-            if (birdY > maxJump) {
-                yDirection = -2;
-            }
-            else {
-                yDirection = 1;
-                birdY += 5 * yDirection;
-            }
+            yDirection = -2;
         }
-
+        
         //event listener for mouseclick - the bird jumps
-        document.addEventListener('mousedown', function(e) {
+        document.addEventListener('mousedown', function (e) {
             jump();
+            maxJump = birdY - 250;
         });
-
         upperSpikes();
         lowerSpikes();
 
         ctx.restore();
+
+        //begin to fall again after jump
+        if (birdY == maxJump) {
+            yDirection = 1;
+        }
+
+        
     }
     var animateInterval = setInterval(animate, 15);
 

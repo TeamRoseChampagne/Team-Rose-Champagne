@@ -41,12 +41,18 @@ function initCanvas() {
         }
         function jump() {
             yDirection = -2;
+            if (xDirection > 0) {
+                xDirection = 2;
+            }
+            else {
+                xDirection = -2;
+            }
         }
         
         //event listener for mouseclick - the bird jumps
         document.addEventListener('mousedown', function (e) {
             jump();
-            maxJump = birdY - 200;
+            maxJump = birdY - 150;
         });
         upperSpikes();
         lowerSpikes();
@@ -56,6 +62,12 @@ function initCanvas() {
         //begin to fall again after jump
         if (birdY <= maxJump) {
             yDirection = 1;
+            if (xDirection > 0) {
+                xDirection = 1;
+            }
+            else {
+                xDirection = -1;
+            }
         }
 
         

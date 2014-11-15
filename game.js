@@ -18,7 +18,7 @@ function initCanvas() {
         var game = true;
         if (game) {
             birdX += 2 * xDirection;
-            birdY += 5 * yDirection;
+            birdY += 3 * yDirection;
         }
 
         if(birdX >= 450) {
@@ -46,7 +46,7 @@ function initCanvas() {
         //event listener for mouseclick - the bird jumps
         document.addEventListener('mousedown', function (e) {
             jump();
-            maxJump = birdY - 250;
+            maxJump = birdY - 200;
         });
         upperSpikes();
         lowerSpikes();
@@ -54,7 +54,7 @@ function initCanvas() {
         ctx.restore();
 
         //begin to fall again after jump
-        if (birdY == maxJump) {
+        if (birdY <= maxJump) {
             yDirection = 1;
         }
 

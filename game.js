@@ -36,15 +36,21 @@ function initCanvas() {
             birdY = 0;
             yDirection = 1;
         }
+        function jump() {
+
+            var maxJump = birdY - 50;
+            if (birdY > maxJump) {
+                yDirection = -2;
+            }
+            else {
+                yDirection = 1;
+                birdY += 5 * yDirection;
+            }
+        }
 
         //event listener for mouseclick - the bird jumps
         document.addEventListener('mousedown', function(e) {
-            var maxJump = birdY - 100;
-            yDirection = -2;
-            //neshto ne bachka - gargata prodyljava da leti nagore...
-            if (maxJump >= birdY) {
-                yDirection = 1;
-            }
+            jump();
         });
 
         upperSpikes();

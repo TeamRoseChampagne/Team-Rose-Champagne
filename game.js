@@ -37,25 +37,20 @@ function initCanvas() {
             yDirection = 1;
         }
 
+        //event listener for mouseclick - the bird jumps
+        document.addEventListener('mousedown', function(e) {
+            var maxJump = birdY - 100;
+            yDirection = -2;
+            //neshto ne bachka - gargata prodyljava da leti nagore...
+            if (maxJump >= birdY) {
+                yDirection = 1;
+            }
+        });
 
         upperSpikes();
         lowerSpikes();
 
         ctx.restore();
-
-        //event listener for mouseclick - the bird jumps
-        document.addEventListener('mousedown', function(e) {
-            var maxJump = birdY - 100;
-            yDirection = -2;
-            //neshto ne backa - gargata prodyljava da leti nagore...
-            if (maxJump >= birdY) {
-                    yDirection = 1;
-            }
-        });
-
-
-
-
     }
     var animateInterval = setInterval(animate, 15);
 

@@ -40,8 +40,13 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="378">
               <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+=======
+            <state vertical-scroll-proportion="-6.6666665" vertical-offset="0" max-vertical-offset="378">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+>>>>>>> f7ac334a77421fc14b5728d108f1c04a2841963b
               <folding />
             </state>
           </provider>
@@ -50,8 +55,13 @@
       <file leaf-file-name="game.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.62222224" vertical-offset="234" max-vertical-offset="2052">
               <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+=======
+            <state vertical-scroll-proportion="2.3147826" vertical-offset="181" max-vertical-offset="2142">
+              <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+>>>>>>> f7ac334a77421fc14b5728d108f1c04a2841963b
               <folding />
             </state>
           </provider>
@@ -189,7 +199,11 @@
       <option name="project" value="LOCAL" />
       <updated>1416005255439</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added 1 more spike :D">
+      <created>1416005803844</created>
+      <updated>1416005803844</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -233,7 +247,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="added spikes" />
-    <option name="LAST_COMMIT_MESSAGE" value="added spikes" />
+    <MESSAGE value="added 1 more spike :D" />
+    <option name="LAST_COMMIT_MESSAGE" value="added 1 more spike :D" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -346,16 +361,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="378">
           <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+=======
+        <state vertical-scroll-proportion="-6.6666665" vertical-offset="0" max-vertical-offset="378">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+>>>>>>> f7ac334a77421fc14b5728d108f1c04a2841963b
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.62222224" vertical-offset="234" max-vertical-offset="2052">
           <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+=======
+        <state vertical-scroll-proportion="2.3147826" vertical-offset="181" max-vertical-offset="2142">
+          <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+>>>>>>> f7ac334a77421fc14b5728d108f1c04a2841963b
           <folding />
         </state>
       </provider>

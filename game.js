@@ -37,15 +37,22 @@ function initCanvas() {
             yDirection = 1;
         }
 
-        //event listener for mouseclick - the bird jumps
-        document.addEventListener('mousedown', function(e) {
-            yDirection = -2;
-        });
 
         upperSpikes();
         lowerSpikes();
 
         ctx.restore();
+
+        //event listener for mouseclick - the bird jumps
+        document.addEventListener('mousedown', function(e) {
+            var maxJump = birdY - 100;
+            yDirection = -2;
+            //neshto ne backa - gargata prodyljava da leti nagore...
+            if (maxJump >= birdY) {
+                    yDirection = 1;
+            }
+        });
+
 
 
 

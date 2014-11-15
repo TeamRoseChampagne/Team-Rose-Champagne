@@ -1,5 +1,5 @@
 var bird = new Image();
-bird.src = "img/birdR.png"
+bird.src = "img/birdR.png";
 
 function initCanvas() {
     var ctx = document.getElementById('my_canvas').getContext('2d');
@@ -10,11 +10,12 @@ function initCanvas() {
     var yDirection = 1;
 
     function animate() {
+
         ctx.save();
         ctx.clearRect(0, 0, cW, cH);
 
         ctx.drawImage(bird, birdX, birdY);
-        birdX += 1 * xDirection;
+        birdX += 2 * xDirection;
         birdY += 5 * yDirection;
 
         if(birdX >= 450) {
@@ -27,33 +28,30 @@ function initCanvas() {
             xDirection = 1;
             bird.src = 'img/birdR.png';
         }
-        if(birdY >= 560) {
-            birdY = 560;
-            yDirection = -1;
+        if(birdY >= 540) {
+            birdY = 540;
+            yDirection = 0;
         }
         else if(birdY <= 0) {
             birdY = 0;
             yDirection = 1;
         }
 
-        /*
-        if (birdY == cH - 40) {
-            birdY -= 5;
-        }
-        if (birdX == cW - 50) {
-            birdX -= 5;
-            birdY += 5;
-        }
-        else {
-            birdX ++;
-            birdY += 5;
-        }
-*/
+        //event listener for mouseclick - the bird jumps
+        document.addEventListener('mousedown', function(e) {
+            yDirection = -2;
+        });
+
         upperSpikes();
         lowerSpikes();
+
         ctx.restore();
+
+
+
     }
     var animateInterval = setInterval(animate, 15);
+
     function upperSpikes() {
         ctx.beginPath();
         ctx.moveTo(25,0);

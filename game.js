@@ -59,7 +59,7 @@ function initCanvas() {
         //event listener for mouseclick - the bird jumps
         document.addEventListener('mousedown', function (e) {
             jump();
-            maxJump = birdY - 100;
+            maxJump = birdY - 60;
         });
 
         upperSpikes();
@@ -86,9 +86,6 @@ function initCanvas() {
         ctx.beginPath();
         ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
         ctx.fillStyle = "#D2C1C1";
-        ctx.lineWidth = 5;
-        ctx.strokeStyle = '#D3D3D3';
-        ctx.stroke();
         ctx.fill();
     }
 

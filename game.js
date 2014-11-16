@@ -38,11 +38,13 @@ function initCanvas() {
             bird.src = 'img/birdR.png';
             score++;
         }
-        if (birdY >= 540) {
+        if (birdY >= 540)
+        { animate() ==false;
             birdY = 540;
             yDirection = 0;
         }
         else if(birdY <= 0) {
+            animate() == false;
             birdY = 0;
             yDirection = 1;
         }

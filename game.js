@@ -10,30 +10,24 @@ function initCanvas() {
     var xDirection = 1;
     var yDirection = 1;
     var score = 0;
+    var game = true;
+
+    var animateInterval = setInterval(animate, 15);
 
     function animate() {
+
         ctx.save();
         ctx.clearRect(0, 0, cW, cH);
 
-        //game speed controls
-        var game = true;
-        if (game) {
+        scoreCircle();
+        scorePoints();
+        birdMovement();
+        drawSpikes();
+        landJump();
+        gameOver();
 
-            scoreCircle();
-            scorePoints();
-            birdMovement();
-            upperSpikes();
-            lowerSpikes();
-            drawLeftSpikes();
-            drawRightSpikes();
-
-            ctx.restore();
-
-            birdJump();
-        }
+        ctx.restore();
     }
-
-    var animateInterval = setInterval(animate, 15);
 
     function birdMovement() {
         ctx.drawImage(bird, birdX, birdY);
@@ -76,11 +70,11 @@ function initCanvas() {
         //event listener for mouseclick - the bird jumps
         document.addEventListener('mousedown', function (e) {
             jump();
-            maxJump = birdY - 60;
+            maxJump = birdY - 80;
         });
     }
 
-    function birdJump() {
+    function landJump() {
         if (birdY <= maxJump) {
             yDirection = 1;
             if (xDirection > 0) {
@@ -104,16 +98,51 @@ function initCanvas() {
         ctx.fillStyle = "gray";
         ctx.font = "bold 130px sans-serif";
         if (score < 10) {
-            ctx.fillText(score, 210, 350);
+            ctx.fillText(score, 215, 350);
         }
         else if (score < 100) {
-            ctx.fillText(score, 160, 350);
+            ctx.fillText(score, 175, 350);
         }
         else {
             ctx.fillText(score, 110, 350);
         }
 
     }
+
+    function drawSpikes() {
+        upperSpikes();
+        lowerSpikes();
+
+        if (birdX < 350 && xDirection < 0) {
+            drawLeftSpikes();
+            if (birdX >= 350 && xDirection < 0) {
+                drawRightSpikes();
+            }
+        }
+
+        else if (birdX > 150 && xDirection > 0) {
+            drawRightSpikes();
+            if (birdX <= 150 && xDirection < 0) {
+                drawLeftSpikes();
+            }
+        }
+    }
+    
+    var leftSpikes = [ {"x" : "0", "y" : "50", "tipX" : "25", "tipY" : "75", "endY" : "100"},
+        {"x" : "0", "y" : "150", "tipX" : "25", "tipY" : "175", "endY" : "200"},
+        {"x" : "0", "y" : "250", "tipX" : "25", "tipY" : "275", "endY" : "300"},
+        {"x" : "0", "y" : "350", "tipX" : "25", "tipY" : "375", "endY" : "400"},
+        {"x" : "0", "y" : "450", "tipX" : "25", "tipY" : "475", "endY" : "500"},
+        {"x" : "0", "y" : "550", "tipX" : "25", "tipY" : "575", "endY" : "600"}
+    ];
+
+    var rightSpikes = [ {"x" : "500", "y" : "50", "tipX" : "475", "tipY" : "75", "endY" : "100"},
+        {"x" : "500", "y" : "150", "tipX" : "475", "tipY" : "175", "endY" : "200"},
+        {"x" : "500", "y" : "250", "tipX" : "475", "tipY" : "275", "endY" : "300"},
+        {"x" : "500", "y" : "350", "tipX" : "475", "tipY" : "375", "endY" : "400"},
+        {"x" : "500", "y" : "450", "tipX" : "475", "tipY" : "475", "endY" : "500"},
+        {"x" : "500", "y" : "550", "tipX" : "475", "tipY" : "575", "endY" : "600"}
+    ];
 
     function upperSpikes() {
         ctx.beginPath();
@@ -169,47 +198,159 @@ function initCanvas() {
         ctx.fill();
     }
 
-    var leftSpikes = [ {"x" : "0", "y" : "50", "tipX" : "25", "tipY" : "75", "endY" : "100"},
-                       {"x" : "0", "y" : "150", "tipX" : "25", "tipY" : "175", "endY" : "200"},
-                       {"x" : "0", "y" : "250", "tipX" : "25", "tipY" : "275", "endY" : "300"},
-                       {"x" : "0", "y" : "350", "tipX" : "25", "tipY" : "375", "endY" : "400"},
-                       {"x" : "0", "y" : "450", "tipX" : "25", "tipY" : "475", "endY" : "500"},
-                       {"x" : "0", "y" : "550", "tipX" : "25", "tipY" : "575", "endY" : "600"}
-    ];
-
-    var rightSpikes = [ {"x" : "500", "y" : "50", "tipX" : "475", "tipY" : "75", "endY" : "100"},
-                        {"x" : "500", "y" : "150", "tipX" : "475", "tipY" : "175", "endY" : "200"},
-                        {"x" : "500", "y" : "250", "tipX" : "475", "tipY" : "275", "endY" : "300"},
-                        {"x" : "500", "y" : "350", "tipX" : "475", "tipY" : "375", "endY" : "400"},
-                        {"x" : "500", "y" : "450", "tipX" : "475", "tipY" : "475", "endY" : "500"},
-                        {"x" : "500", "y" : "550", "tipX" : "475", "tipY" : "575", "endY" : "600"}
-    ];
-
     function drawLeftSpikes() {
-        for (var i = 0; i < leftSpikes.length; i++) {
-            var ls = leftSpikes[i];
-            ctx.beginPath();
-            ctx.moveTo(ls.x, ls.y);
-            ctx.lineTo(ls.tipX, ls.tipY);
-            ctx.lineTo(ls.x, ls.endY);
-            ctx.closePath();
-            ctx.fillStyle='#BE2116';
-            ctx.stroke();
-            ctx.fill();
+
+        if (score <= 10) {
+            var positions = [];
+            if (score % 3) {
+                positions = [2, 4];
+            }
+            else {
+                positions = [0, 3];
+            }
+
+            for (var i = 0; i < 2; i++) {
+                var ls = leftSpikes[positions[i]];
+                ctx.beginPath();
+                ctx.moveTo(ls.x, ls.y);
+                ctx.lineTo(ls.tipX, ls.tipY);
+                ctx.lineTo(ls.x, ls.endY);
+                ctx.closePath();
+                ctx.fillStyle='#BE2116';
+                ctx.stroke();
+                ctx.fill();
+            }
+        }
+
+        else if (score <= 20) {
+            var positions = [];
+            if (score % 5) {
+                positions = [1, 2, 4];
+            }
+            else if (score % 13) {
+                positions = [1, 3, 4];
+            }
+            else {
+                positions = [0, 2, 3];
+            }
+
+            for (var i = 0; i < 3; i++) {
+                var ls = leftSpikes[positions[i]];
+                ctx.beginPath();
+                ctx.moveTo(ls.x, ls.y);
+                ctx.lineTo(ls.tipX, ls.tipY);
+                ctx.lineTo(ls.x, ls.endY);
+                ctx.closePath();
+                ctx.fillStyle='#BE2116';
+                ctx.stroke();
+                ctx.fill();
+            }
+        }
+
+        else {
+            var positions = [];
+            if (score % 5) {
+                positions = [0, 2, 3, 4];
+            }
+            else if (score % 3) {
+                positions = [1, 2, 3, 5];
+            }
+            else {
+                positions = [0, 1, 2, 4];
+            }
+
+            for (var i = 0; i < 4; i++) {
+                var ls = leftSpikes[positions[i]];
+                ctx.beginPath();
+                ctx.moveTo(ls.x, ls.y);
+                ctx.lineTo(ls.tipX, ls.tipY);
+                ctx.lineTo(ls.x, ls.endY);
+                ctx.closePath();
+                ctx.fillStyle='#BE2116';
+                ctx.stroke();
+                ctx.fill();
+            }
         }
     }
 
     function drawRightSpikes() {
-        for (var i = 0; i < rightSpikes.length; i++) {
-            var ls = rightSpikes[i];
-            ctx.beginPath();
-            ctx.moveTo(ls.x, ls.y);
-            ctx.lineTo(ls.tipX, ls.tipY);
-            ctx.lineTo(ls.x, ls.endY);
-            ctx.closePath();
-            ctx.fillStyle='#BE2116';
-            ctx.stroke();
-            ctx.fill();
+        if (score <= 10) {
+            var positions = [];
+            if (score % 4) {
+                positions = [3, 4];
+            }
+            else {
+                positions = [1, 3];
+            }
+
+            for (var i = 0; i < 2; i++) {
+                var ls = rightSpikes[positions[i]];
+                ctx.beginPath();
+                ctx.moveTo(ls.x, ls.y);
+                ctx.lineTo(ls.tipX, ls.tipY);
+                ctx.lineTo(ls.x, ls.endY);
+                ctx.closePath();
+                ctx.fillStyle='#BE2116';
+                ctx.stroke();
+                ctx.fill();
+            }
+        }
+
+        else if (score <= 20) {
+            var positions = [];
+            if (score % 14) {
+                positions = [1, 2, 4];
+            }
+            else if (score % 6) {
+                positions = [2, 3, 4];
+            }
+            else {
+                positions = [2, 4, 5];
+            }
+
+            for (var i = 0; i < 3; i++) {
+                var ls = rightSpikes[positions[i]];
+                ctx.beginPath();
+                ctx.moveTo(ls.x, ls.y);
+                ctx.lineTo(ls.tipX, ls.tipY);
+                ctx.lineTo(ls.x, ls.endY);
+                ctx.closePath();
+                ctx.fillStyle='#BE2116';
+                ctx.stroke();
+                ctx.fill();
+            }
+        }
+
+        else {
+            var positions = [];
+            if (score % 8) {
+                positions = [0, 2, 3, 4];
+            }
+            else if (score % 6) {
+                positions = [1, 2, 3, 5];
+            }
+            else {
+                positions = [0, 1, 2, 4];
+            }
+
+            for (var i = 0; i < 4; i++) {
+                var ls = rightSpikes[positions[i]];
+                ctx.beginPath();
+                ctx.moveTo(ls.x, ls.y);
+                ctx.lineTo(ls.tipX, ls.tipY);
+                ctx.lineTo(ls.x, ls.endY);
+                ctx.closePath();
+                ctx.fillStyle='#BE2116';
+                ctx.stroke();
+                ctx.fill();
+            }
+        }
+
+    }
+
+    function gameOver() {
+        if(!game) {
+            alert("GAME OVER! \nYour score is " + score);
         }
     }
 

@@ -26,10 +26,12 @@ function initCanvas() {
         setGameSpeed();
         scoreCircle();
         scorePoints();
-        birdMovement();
         drawSpikes();
+        birdMovement();
         landJump();
-        gameOver();
+        if(!game) {
+            gameOver();
+        }
 
         ctx.restore();
     }
@@ -63,13 +65,11 @@ function initCanvas() {
             bird.src = 'img/birdR.png';
             score++;
         }
-        if (birdY >= 540)
-        {   //animate() ==false;
+        if (birdY >= 540) {
             birdY = 540;
             yDirection = 0;
         }
         else if(birdY <= 0) {
-            //animate() == false;
             birdY = 0;
             yDirection = 1;
         }
@@ -126,6 +126,7 @@ function initCanvas() {
     }
 
     function drawSpikes() {
+
         upperSpikes();
         lowerSpikes();
 
@@ -145,19 +146,19 @@ function initCanvas() {
     }
 
     var leftSpikes = [ {"x" : "0", "y" : "50", "tipX" : "25", "tipY" : "75", "endY" : "100"},
-        {"x" : "0", "y" : "150", "tipX" : "25", "tipY" : "175", "endY" : "200"},
-        {"x" : "0", "y" : "250", "tipX" : "25", "tipY" : "275", "endY" : "300"},
-        {"x" : "0", "y" : "350", "tipX" : "25", "tipY" : "375", "endY" : "400"},
-        {"x" : "0", "y" : "450", "tipX" : "25", "tipY" : "475", "endY" : "500"},
-        {"x" : "0", "y" : "550", "tipX" : "25", "tipY" : "575", "endY" : "600"}
+                       {"x" : "0", "y" : "150", "tipX" : "25", "tipY" : "175", "endY" : "200"},
+                       {"x" : "0", "y" : "250", "tipX" : "25", "tipY" : "275", "endY" : "300"},
+                       {"x" : "0", "y" : "350", "tipX" : "25", "tipY" : "375", "endY" : "400"},
+                       {"x" : "0", "y" : "450", "tipX" : "25", "tipY" : "475", "endY" : "500"},
+                       {"x" : "0", "y" : "550", "tipX" : "25", "tipY" : "575", "endY" : "600"}
     ];
 
     var rightSpikes = [ {"x" : "500", "y" : "50", "tipX" : "475", "tipY" : "75", "endY" : "100"},
-        {"x" : "500", "y" : "150", "tipX" : "475", "tipY" : "175", "endY" : "200"},
-        {"x" : "500", "y" : "250", "tipX" : "475", "tipY" : "275", "endY" : "300"},
-        {"x" : "500", "y" : "350", "tipX" : "475", "tipY" : "375", "endY" : "400"},
-        {"x" : "500", "y" : "450", "tipX" : "475", "tipY" : "475", "endY" : "500"},
-        {"x" : "500", "y" : "550", "tipX" : "475", "tipY" : "575", "endY" : "600"}
+                        {"x" : "500", "y" : "150", "tipX" : "475", "tipY" : "175", "endY" : "200"},
+                        {"x" : "500", "y" : "250", "tipX" : "475", "tipY" : "275", "endY" : "300"},
+                        {"x" : "500", "y" : "350", "tipX" : "475", "tipY" : "375", "endY" : "400"},
+                        {"x" : "500", "y" : "450", "tipX" : "475", "tipY" : "475", "endY" : "500"},
+                        {"x" : "500", "y" : "550", "tipX" : "475", "tipY" : "575", "endY" : "600"}
     ];
 
     function upperSpikes() {
@@ -185,6 +186,10 @@ function initCanvas() {
         ctx.stroke();
         ctx.fillStyle='#BE2116';
         ctx.fill();
+
+        if (birdY <= 20) {
+            game = false;
+        }
     }
 
     function lowerSpikes() {
@@ -212,6 +217,10 @@ function initCanvas() {
         ctx.stroke();
         ctx.fillStyle='#BE2116';
         ctx.fill();
+
+        if (birdY + 35 > 570) {
+            game = false;
+        }
     }
 
     function drawLeftSpikes() {
@@ -235,6 +244,10 @@ function initCanvas() {
                 ctx.fillStyle='#BE2116';
                 ctx.stroke();
                 ctx.fill();
+
+                if (birdX <= ls.tipX - 18 && birdY < ls.endY - 20 && birdY + 20 > ls.y) {
+                    game = false;
+                }
             }
         }
 
@@ -260,6 +273,10 @@ function initCanvas() {
                 ctx.fillStyle='#BE2116';
                 ctx.stroke();
                 ctx.fill();
+
+                if (birdX <= ls.tipX - 18 && birdY < ls.endY - 20 && birdY + 20 > ls.y) {
+                    game = false;
+                }
             }
         }
 
@@ -285,6 +302,10 @@ function initCanvas() {
                 ctx.fillStyle='#BE2116';
                 ctx.stroke();
                 ctx.fill();
+
+                if (birdX <= ls.tipX - 18 && birdY < ls.endY - 20 && birdY + 20 > ls.y) {
+                    game = false;
+                }
             }
         }
     }
@@ -300,15 +321,19 @@ function initCanvas() {
             }
 
             for (var i = 0; i < 2; i++) {
-                var ls = rightSpikes[positions[i]];
+                var rs = rightSpikes[positions[i]];
                 ctx.beginPath();
-                ctx.moveTo(ls.x, ls.y);
-                ctx.lineTo(ls.tipX, ls.tipY);
-                ctx.lineTo(ls.x, ls.endY);
+                ctx.moveTo(rs.x, rs.y);
+                ctx.lineTo(rs.tipX, rs.tipY);
+                ctx.lineTo(rs.x, rs.endY);
                 ctx.closePath();
                 ctx.fillStyle='#BE2116';
                 ctx.stroke();
                 ctx.fill();
+
+                if (birdX + 35 >= rs.tipX  && birdY < rs.endY - 20 && birdY + 20 > rs.y) {
+                    game = false;
+                }
             }
         }
 
@@ -325,15 +350,19 @@ function initCanvas() {
             }
 
             for (var i = 0; i < 3; i++) {
-                var ls = rightSpikes[positions[i]];
+                var rs = rightSpikes[positions[i]];
                 ctx.beginPath();
-                ctx.moveTo(ls.x, ls.y);
-                ctx.lineTo(ls.tipX, ls.tipY);
-                ctx.lineTo(ls.x, ls.endY);
+                ctx.moveTo(rs.x, rs.y);
+                ctx.lineTo(rs.tipX, rs.tipY);
+                ctx.lineTo(rs.x, rs.endY);
                 ctx.closePath();
                 ctx.fillStyle='#BE2116';
                 ctx.stroke();
                 ctx.fill();
+
+                if (birdX + 35 >= rs.tipX  && birdY < rs.endY - 20 && birdY + 20 > rs.y) {
+                    game = false;
+                }
             }
         }
 
@@ -350,24 +379,26 @@ function initCanvas() {
             }
 
             for (var i = 0; i < 4; i++) {
-                var ls = rightSpikes[positions[i]];
+                var rs = rightSpikes[positions[i]];
                 ctx.beginPath();
-                ctx.moveTo(ls.x, ls.y);
-                ctx.lineTo(ls.tipX, ls.tipY);
-                ctx.lineTo(ls.x, ls.endY);
+                ctx.moveTo(rs.x, rs.y);
+                ctx.lineTo(rs.tipX, rs.tipY);
+                ctx.lineTo(rs.x, rs.endY);
                 ctx.closePath();
                 ctx.fillStyle='#BE2116';
                 ctx.stroke();
                 ctx.fill();
+
+                if (birdX + 35 >= rs.tipX  && birdY < rs.endY - 20 && birdY + 20 > rs.y) {
+                    game = false;
+                }
             }
         }
 
     }
 
     function gameOver() {
-        if(!game) {
-            alert("GAME OVER! \nYour score is " + score);
-        }
+        alert("GAME OVER! \nYour score is " + score);
     }
 
 }

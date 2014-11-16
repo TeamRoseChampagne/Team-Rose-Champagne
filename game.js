@@ -9,6 +9,7 @@ function initCanvas() {
     var birdY = 100;
     var xDirection = 1;
     var yDirection = 1;
+    var gameSpeed = 3;
     var score = 0;
     var game = true;
 
@@ -19,6 +20,7 @@ function initCanvas() {
         ctx.save();
         ctx.clearRect(0, 0, cW, cH);
 
+        setGameSpeed();
         scoreCircle();
         scorePoints();
         birdMovement();
@@ -29,11 +31,22 @@ function initCanvas() {
         ctx.restore();
     }
 
+    function setGameSpeed() {
+
+        if(score <= 10)
+            gameSpeed = 3;
+        else if(score <= 20)
+            gameSpeed = 4;
+        else
+            gameSpeed = 5;
+    }
+
     function birdMovement() {
+
         ctx.drawImage(bird, birdX, birdY);
 
-        birdX += 2 * xDirection;
-        birdY += 3 * yDirection;
+        birdX += gameSpeed * xDirection;
+        birdY += (gameSpeed + 1) * yDirection;
 
         if(birdX >= 450) {
             birdX = 450;
@@ -70,7 +83,7 @@ function initCanvas() {
         //event listener for mouseclick - the bird jumps
         document.addEventListener('mousedown', function (e) {
             jump();
-            maxJump = birdY - 80;
+            maxJump = birdY - 100;
         });
     }
 
@@ -127,7 +140,7 @@ function initCanvas() {
             }
         }
     }
-    
+
     var leftSpikes = [ {"x" : "0", "y" : "50", "tipX" : "25", "tipY" : "75", "endY" : "100"},
         {"x" : "0", "y" : "150", "tipX" : "25", "tipY" : "175", "endY" : "200"},
         {"x" : "0", "y" : "250", "tipX" : "25", "tipY" : "275", "endY" : "300"},
@@ -250,13 +263,13 @@ function initCanvas() {
         else {
             var positions = [];
             if (score % 5) {
-                positions = [0, 2, 3, 4];
+                positions = [0, 1, 2, 4];
             }
             else if (score % 3) {
-                positions = [1, 2, 3, 5];
+                positions = [0, 2, 3, 4];
             }
             else {
-                positions = [0, 1, 2, 4];
+                positions = [1, 2, 3, 5];
             }
 
             for (var i = 0; i < 4; i++) {

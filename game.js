@@ -4,14 +4,19 @@ bird.src = "img/birdR.png";
 function initCanvas() {
     var ctx = document.getElementById('my_canvas').getContext('2d');
     var cW = ctx.canvas.width, cH = ctx.canvas.height;
+    var centerX = cW / 2, centerY = cH / 2;
     var birdX = ctx.canvas.width / 2 - bird.width / 2;
     var birdY = 100;
     var xDirection = 1;
     var yDirection = 1;
+    var score = 0;
 
     function animate() {
         ctx.save();
         ctx.clearRect(0, 0, cW, cH);
+
+        scoreCircle();
+        scorePoints();
 
         ctx.drawImage(bird, birdX, birdY);
         //game speed controls
@@ -25,11 +30,13 @@ function initCanvas() {
             birdX = 450;
             xDirection = -1;
             bird.src = 'img/birdL.png';
+            score++;
         }
         else if(birdX <= 0) {
             birdX = 0;
             xDirection = 1;
             bird.src = 'img/birdR.png';
+            score++;
         }
         if (birdY >= 540) {
             birdY = 540;
@@ -48,12 +55,13 @@ function initCanvas() {
                 xDirection = -2;
             }
         }
-        
+
         //event listener for mouseclick - the bird jumps
         document.addEventListener('mousedown', function (e) {
             jump();
-            maxJump = birdY - 150;
+            maxJump = birdY - 100;
         });
+
         upperSpikes();
         lowerSpikes();
 
@@ -69,14 +77,37 @@ function initCanvas() {
                 xDirection = -1;
             }
         }
-
-        
     }
+
     var animateInterval = setInterval(animate, 15);
 
-    function upperSpikes() {
-        ctx.fillStyle='#BE2116';
+    function scoreCircle() {
+        var radius = 150;
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        ctx.fillStyle = "#D2C1C1";
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = '#D3D3D3';
+        ctx.stroke();
         ctx.fill();
+    }
+
+    function scorePoints() {
+        ctx.fillStyle = "gray";
+        ctx.font = "bold 130px sans-serif";
+        if (score < 10) {
+            ctx.fillText(score, 210, 350);
+        }
+        else if (score < 100) {
+            ctx.fillText(score, 160, 350);
+        }
+        else {
+            ctx.fillText(score, 110, 350);
+        }
+
+    }
+
+    function upperSpikes() {
         ctx.beginPath();
         ctx.moveTo(25,0);
         ctx.lineTo(50, 25);
@@ -99,11 +130,11 @@ function initCanvas() {
         ctx.lineTo(475, 0);
         ctx.closePath();
         ctx.stroke();
+        ctx.fillStyle='#BE2116';
+        ctx.fill();
     }
 
     function lowerSpikes() {
-        ctx.fillStyle='#BE2116';
-        ctx.fill();
         ctx.beginPath();
         ctx.moveTo(25,600);
         ctx.lineTo(50, 575);
@@ -126,6 +157,8 @@ function initCanvas() {
         ctx.lineTo(475, 600);
         ctx.closePath();
         ctx.stroke();
+        ctx.fillStyle='#BE2116';
+        ctx.fill();
     }
 }
 

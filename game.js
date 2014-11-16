@@ -2,9 +2,12 @@ var bird = new Image();
 bird.src = "img/birdR.png";
 
 function initCanvas() {
+
     var ctx = document.getElementById('my_canvas').getContext('2d');
-    var cW = ctx.canvas.width, cH = ctx.canvas.height;
-    var centerX = cW / 2, centerY = cH / 2;
+    var cW = ctx.canvas.width;
+    var cH = ctx.canvas.height;
+    var centerX = cW / 2;
+    var centerY = cH / 2;
     var birdX = ctx.canvas.width / 2 - bird.width / 2;
     var birdY = 100;
     var xDirection = 1;
@@ -117,7 +120,7 @@ function initCanvas() {
             ctx.fillText(score, 175, 350);
         }
         else {
-            ctx.fillText(score, 110, 350);
+            ctx.fillText(score, 135, 350);
         }
 
     }

@@ -240,26 +240,11 @@ function initCanvas() {
     ];
 
     function upperSpikes() {
-        ctx.beginPath();
-        ctx.moveTo(25,0);
-        ctx.lineTo(50, 25);
-        ctx.lineTo(75, 0);
-        ctx.lineTo(100, 25);
-        ctx.lineTo(125, 0);
-        ctx.lineTo(150, 25);
-        ctx.lineTo(175, 0);
-        ctx.lineTo(200, 25);
-        ctx.lineTo(225, 0);
-        ctx.lineTo(250, 25);
-        ctx.lineTo(275, 0);
-        ctx.lineTo(300, 25);
-        ctx.lineTo(325, 0);
-        ctx.lineTo(350, 25);
-        ctx.lineTo(375, 0);
-        ctx.lineTo(400, 25);
-        ctx.lineTo(425, 0);
-        ctx.lineTo(450, 25);
-        ctx.lineTo(475, 0);
+        ctx.beginPath();        ctx.moveTo(25,0);       ctx.lineTo(50, 25);     ctx.lineTo(75, 0);
+        ctx.lineTo(100, 25);    ctx.lineTo(125, 0);     ctx.lineTo(150, 25);    ctx.lineTo(175, 0);
+        ctx.lineTo(200, 25);    ctx.lineTo(225, 0);     ctx.lineTo(250, 25);    ctx.lineTo(275, 0);
+        ctx.lineTo(300, 25);    ctx.lineTo(325, 0); ctx.lineTo(350, 25);        ctx.lineTo(375, 0);
+        ctx.lineTo(400, 25);    ctx.lineTo(425, 0);     ctx.lineTo(450, 25);    ctx.lineTo(475, 0);
         ctx.closePath();
         ctx.stroke();
         ctx.fillStyle='#BE2116';
@@ -271,26 +256,11 @@ function initCanvas() {
     }
 
     function lowerSpikes() {
-        ctx.beginPath();
-        ctx.moveTo(25,600);
-        ctx.lineTo(50, 575);
-        ctx.lineTo(75, 600);
-        ctx.lineTo(100, 575);
-        ctx.lineTo(125, 600);
-        ctx.lineTo(150, 575);
-        ctx.lineTo(175, 600);
-        ctx.lineTo(200, 575);
-        ctx.lineTo(225, 600);
-        ctx.lineTo(250, 575);
-        ctx.lineTo(275, 600);
-        ctx.lineTo(300, 575);
-        ctx.lineTo(325, 600);
-        ctx.lineTo(350, 575);
-        ctx.lineTo(375, 600);
-        ctx.lineTo(400, 575);
-        ctx.lineTo(425, 600);
-        ctx.lineTo(450, 575);
-        ctx.lineTo(475, 600);
+        ctx.beginPath();        ctx.moveTo(25,600);     ctx.lineTo(50, 575);    ctx.lineTo(75, 600);
+        ctx.lineTo(100, 575);   ctx.lineTo(125, 600);   ctx.lineTo(150, 575);   ctx.lineTo(175, 600);
+        ctx.lineTo(200, 575);   ctx.lineTo(225, 600);   ctx.lineTo(250, 575);   ctx.lineTo(275, 600);
+        ctx.lineTo(300, 575);   ctx.lineTo(325, 600);   ctx.lineTo(350, 575);   ctx.lineTo(375, 600);
+        ctx.lineTo(400, 575);   ctx.lineTo(425, 600);   ctx.lineTo(450, 575);   ctx.lineTo(475, 600);
         ctx.closePath();
         ctx.stroke();
         ctx.fillStyle='#BE2116';

@@ -7,6 +7,11 @@ function mainMenu() {
 
     bird.src = "img/birdR.png";
 
+    var jumpSound = new Audio();
+    jumpSound.src = "resources/jump.wav";
+    var wallHitSound = new Audio();
+    wallHitSound.src = "resources/wall-hit.wav";
+
     //event listeners for the main manu
     var mouseMoveListener = function(e) {
         var mouseX = e.clientX - mM.canvas.offsetLeft;

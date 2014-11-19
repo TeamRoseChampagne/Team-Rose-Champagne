@@ -133,12 +133,14 @@ function initCanvas() {
             xDirection = -1;
             bird.src = 'img/birdL.png';
             score++;
+            wallHitSound.play();
         }
         else if(birdX <= 0) {
             birdX = 0;
             xDirection = 1;
             bird.src = 'img/birdR.png';
             score++;
+            wallHitSound.play();
         }
         if (birdY >= 540) {
             birdY = 540;

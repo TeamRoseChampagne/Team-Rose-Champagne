@@ -149,6 +149,7 @@ function initCanvas() {
         else if(birdY <= 0) {
             birdY = 0;
             yDirection = 1;
+            jumpSound.play();
         }
         function jump() {
             yDirection = -2;

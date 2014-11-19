@@ -8,70 +8,70 @@ wallHitSound.src = "resources/wall-hit.wav";
 
 function mainMenu() {
 
-    var mM = document.getElementById('my_canvas').getContext('2d');
+    var ctx = document.getElementById('my_canvas').getContext('2d');
 
     bird.src = "img/birdR.png";
 
     //event listeners for the main manu
     var mouseMoveListener = function(e) {
-        var mouseX = e.clientX - mM.canvas.offsetLeft;
-        var mouseY = e.clientY - mM.canvas.offsetTop;
+        var mouseX = e.clientX - ctx.canvas.offsetLeft;
+        var mouseY = e.clientY - ctx.canvas.offsetTop;
 
         if (mouseX >= 300 && mouseX <= 460 && mouseY >= 160 && mouseY <= 230) {
 
-            mM.fillStyle = "white";
-            mM.font = "bold 80px Birds, sans-serif";
-            mM.fillText("Play", 300, 230);
-            mM.strokeText("Play", 300, 230);
+            ctx.fillStyle = "white";
+            ctx.font = "bold 80px Birds, sans-serif";
+            ctx.fillText("Play", 300, 230);
+            ctx.strokeText("Play", 300, 230);
 
         }
 
         else {
 
-            mM.fillStyle = "lightgray";
-            mM.font = "bold 80px Birds, sans-serif";
-            mM.fillText("Play", 300, 230);
-            mM.strokeText("Play", 300, 230);
+            ctx.fillStyle = "lightgray";
+            ctx.font = "bold 80px Birds, sans-serif";
+            ctx.fillText("Play", 300, 230);
+            ctx.strokeText("Play", 300, 230);
 
         }
     }
     var playClickListener = function(e) {
-        var mouseX = e.clientX - mM.canvas.offsetLeft;
-        var mouseY = e.clientY - mM.canvas.offsetTop;
+        var mouseX = e.clientX - ctx.canvas.offsetLeft;
+        var mouseY = e.clientY - ctx.canvas.offsetTop;
 
         if (mouseX >= 300 && mouseX <= 460 && mouseY >= 160 && mouseY <= 230) {
-            mM.canvas.removeEventListener('mousemove', mouseMoveListener, false);
-            mM.canvas.removeEventListener('click', playClickListener, false);
+            ctx.canvas.removeEventListener('mousemove', mouseMoveListener, false);
+            ctx.canvas.removeEventListener('click', playClickListener, false);
             play = true;
             initCanvas();
         }
     }
-    mM.canvas.addEventListener('mousemove', mouseMoveListener, false);
-    mM.canvas.addEventListener('click', playClickListener, false);
+    ctx.canvas.addEventListener('mousemove', mouseMoveListener, false);
+    ctx.canvas.addEventListener('click', playClickListener, false);
 
 
-    mM.fillStyle = "red";
-    mM.fillRect(0, 0, 500, 600);
+    ctx.fillStyle = "red";
+    ctx.fillRect(0, 0, 500, 600);
 
-    mM.fillStyle = "white";
-    mM.font = "bold 70px Birds, sans-serif";
+    ctx.fillStyle = "white";
+    ctx.font = "bold 70px Birds, sans-serif";
 
-    mM.fillText("DON'T", 70, 100);
-    mM.strokeText("DON'T", 70, 100);
+    ctx.fillText("DON'T", 70, 100);
+    ctx.strokeText("DON'T", 70, 100);
 
-    mM.fillText("HIT", 30, 230);
-    mM.strokeText("HIT", 30, 230);
+    ctx.fillText("HIT", 30, 230);
+    ctx.strokeText("HIT", 30, 230);
 
-    mM.fillText("THE", 110, 340);
-    mM.strokeText("THE", 110, 340);
+    ctx.fillText("THE", 110, 340);
+    ctx.strokeText("THE", 110, 340);
 
-    mM.font = "bold 130px Birds, sans-serif";
-    mM.fillText("SPIKES", 50, 530);
-    mM.strokeText("SPIKES", 50, 530);
+    ctx.font = "bold 130px Birds, sans-serif";
+    ctx.fillText("SPIKES", 50, 530);
+    ctx.strokeText("SPIKES", 50, 530);
 
-    mM.font = "bold 10px sans-serif";
-    mM.fillText("\u00A9 Team Rose Champagne ", 350, 590);
-    mM.strokeText("", 300, 580);
+    ctx.font = "bold 10px sans-serif";
+    ctx.fillText("\u00A9 Team Rose Champagne ", 350, 590);
+    ctx.strokeText("", 300, 580);
 
 }
 
@@ -477,8 +477,63 @@ function initCanvas() {
 
     function gameOver() {
         clearInterval(animateInterval);
-        alert("GAME OVER! \nYour score is " + score);
-        mainMenu();
+        game = false;
+        var mouseMoveListener = function(e) {
+            var mouseX = e.clientX - ctx.canvas.offsetLeft;
+            var mouseY = e.clientY - ctx.canvas.offsetTop;
+
+            if (mouseX >= 100 && mouseX <= 500 && mouseY >= 480 && mouseY <= 540) {
+
+                ctx.fillStyle = "white";
+                ctx.font = "bold 80px Birds, sans-serif";
+                ctx.fillText("Play again?", 100, 540);
+                ctx.strokeText("Play again?", 100, 540);
+
+            }
+
+            else {
+
+                ctx.fillStyle = "lightgray";
+                ctx.font = "bold 80px Birds, sans-serif";
+                ctx.fillText("Play again?", 100, 540);
+                ctx.strokeText("Play again?", 100, 540);
+
+            }
+        }
+        var playClickListener = function(e) {
+            var mouseX = e.clientX - ctx.canvas.offsetLeft;
+            var mouseY = e.clientY - ctx.canvas.offsetTop;
+
+            if (mouseX >= 100 && mouseX <= 500 && mouseY >= 480 && mouseY <= 540) {
+                ctx.canvas.removeEventListener('mousemove', mouseMoveListener, false);
+                ctx.canvas.removeEventListener('click', playClickListener, false);
+                play = true;
+                initCanvas();
+            }
+        }
+        ctx.canvas.addEventListener('mousemove', mouseMoveListener, false);
+        ctx.canvas.addEventListener('click', playClickListener, false);
+
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(0, 0, 500, 600);
+
+        ctx.fillStyle = "white";
+        ctx.font = "bold 130px Birds, sans-serif";
+
+        ctx.fillText("GAME", 100, 150);
+        ctx.strokeText("GAME", 100, 150);
+
+        ctx.fillText("OVER", 100, 280);
+        ctx.strokeText("OVER", 100, 280);
+
+        ctx.font = "bold 30px Birds, sans-serif";
+        ctx.fillText("high score:", 50, 330);
+        ctx.strokeText("high score:", 50, 330);
+
+        ctx.font = "bold 10px sans-serif";
+        ctx.fillText("\u00A9 Team Rose Champagne ", 350, 590);
+        ctx.strokeText("", 300, 580);
     }
 
 }

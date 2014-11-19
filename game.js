@@ -1,16 +1,16 @@
 var bird = new Image();
 bird.src = "img/birdR.png";
 
+var jumpSound = new Audio();
+jumpSound.src = "resources/jump.wav";
+var wallHitSound = new Audio();
+wallHitSound.src = "resources/wall-hit.wav";
+
 function mainMenu() {
 
     var mM = document.getElementById('my_canvas').getContext('2d');
 
     bird.src = "img/birdR.png";
-
-    var jumpSound = new Audio();
-    jumpSound.src = "resources/jump.wav";
-    var wallHitSound = new Audio();
-    wallHitSound.src = "resources/wall-hit.wav";
 
     //event listeners for the main manu
     var mouseMoveListener = function(e) {
@@ -149,7 +149,6 @@ function initCanvas() {
         else if(birdY <= 0) {
             birdY = 0;
             yDirection = 1;
-            jumpSound.play();
         }
         function jump() {
             yDirection = -2;
@@ -163,6 +162,7 @@ function initCanvas() {
 
         //event listener for mouseclick - the bird jumps
         document.addEventListener('mousedown', function (e) {
+            jumpSound.play();
             jump();
             maxJump = birdY - 100;
         });

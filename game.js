@@ -19,7 +19,7 @@ function mainMenu() {
 
         if (mouseX >= 300 && mouseX <= 460 && mouseY >= 160 && mouseY <= 230) {
 
-            mM.fillStyle = "lightgray";
+            mM.fillStyle = "white";
             mM.font = "bold 80px Birds, sans-serif";
             mM.fillText("Play", 300, 230);
             mM.strokeText("Play", 300, 230);
@@ -28,7 +28,7 @@ function mainMenu() {
 
         else {
 
-            mM.fillStyle = "white";
+            mM.fillStyle = "lightgray";
             mM.font = "bold 80px Birds, sans-serif";
             mM.fillText("Play", 300, 230);
             mM.strokeText("Play", 300, 230);
@@ -53,7 +53,7 @@ function mainMenu() {
     mM.fillStyle = "red";
     mM.fillRect(0, 0, 500, 600);
 
-    mM.fillStyle = "lightgray";
+    mM.fillStyle = "white";
     mM.font = "bold 70px Birds, sans-serif";
 
     mM.fillText("DON'T", 70, 100);

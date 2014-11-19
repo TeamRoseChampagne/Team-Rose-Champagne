@@ -12,3 +12,7 @@ body {
     background: lightgray;
     border: #000 1px solid;
 }
+
+#highScore {
+    visibility: hidden;
+}

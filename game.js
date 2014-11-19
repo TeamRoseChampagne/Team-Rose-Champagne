@@ -527,13 +527,20 @@ function initCanvas() {
         ctx.fillText("OVER", 100, 280);
         ctx.strokeText("OVER", 100, 280);
 
-        ctx.font = "bold 30px Birds, sans-serif";
-        ctx.fillText("high score:", 50, 330);
-        ctx.strokeText("high score:", 50, 330);
-
         ctx.font = "bold 10px sans-serif";
         ctx.fillText("\u00A9 Team Rose Champagne ", 350, 590);
         ctx.strokeText("", 300, 580);
+
+        var highScore = document.getElementById('highScore').innerHTML;
+        if (score > highScore) {
+            document.getElementById('highScore').innerHTML = score;
+        } else {
+            score = highScore;
+        }
+
+        ctx.font = "bold 30px Birds, sans-serif";
+        ctx.fillText("high score: " + score, 50, 330);
+        ctx.strokeText("high score: " + score, 50, 330);
     }
 
 }

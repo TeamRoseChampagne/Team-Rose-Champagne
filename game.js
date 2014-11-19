@@ -1,6 +1,9 @@
 var bird = new Image();
 bird.src = "img/birdR.png";
 
+var birdD = new Image();
+birdD.src = "img/birdD.png";
+
 var jumpSound = new Audio();
 jumpSound.src = "resources/jump.wav";
 var wallHitSound = new Audio();
@@ -508,6 +511,7 @@ function initCanvas() {
             score = highScore;
         }
 
+        ctx.drawImage(birdD, 410, 410);
         ctx.font = "bold 30px Birds, sans-serif";
         ctx.fillText("high score: " + score, 50, 330);
         ctx.strokeText("high score: " + score, 50, 330);

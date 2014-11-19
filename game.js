@@ -459,8 +459,8 @@ function initCanvas() {
 
                 ctx.fillStyle = "white";
                 ctx.font = "bold 80px Birds, sans-serif";
-                ctx.fillText("Play again?", 100, 540);
-                ctx.strokeText("Play again?", 100, 540);
+                ctx.fillText("Main menu", 100, 540);
+                ctx.strokeText("Main menu", 100, 540);
 
             }
 
@@ -468,8 +468,8 @@ function initCanvas() {
 
                 ctx.fillStyle = "lightgray";
                 ctx.font = "bold 80px Birds, sans-serif";
-                ctx.fillText("Play again?", 100, 540);
-                ctx.strokeText("Play again?", 100, 540);
+                ctx.fillText("Main menu", 100, 540);
+                ctx.strokeText("Main menu", 100, 540);
 
             }
         }
@@ -481,7 +481,7 @@ function initCanvas() {
                 ctx.canvas.removeEventListener('mousemove', mouseMoveListener, false);
                 ctx.canvas.removeEventListener('click', playClickListener, false);
                 play = true;
-                initCanvas();
+                mainMenu();
             }
         }
         ctx.canvas.addEventListener('mousemove', mouseMoveListener, false);

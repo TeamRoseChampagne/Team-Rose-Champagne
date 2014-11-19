@@ -1,6 +1,75 @@
 var bird = new Image();
 bird.src = "img/birdR.png";
 
+function mainMenu() {
+
+    var mM = document.getElementById('my_canvas').getContext('2d');
+
+    bird.src = "img/birdR.png";
+
+    //event listeners for the main manu
+    var mouseMoveListener = function(e) {
+        var mouseX = e.clientX - mM.canvas.offsetLeft;
+        var mouseY = e.clientY - mM.canvas.offsetTop;
+
+        if (mouseX >= 300 && mouseX <= 460 && mouseY >= 160 && mouseY <= 230) {
+
+            mM.fillStyle = "lightgray";
+            mM.font = "bold 80px Birds, sans-serif";
+            mM.fillText("Play", 300, 230);
+            mM.strokeText("Play", 300, 230);
+
+        }
+
+        else {
+
+            mM.fillStyle = "white";
+            mM.font = "bold 80px Birds, sans-serif";
+            mM.fillText("Play", 300, 230);
+            mM.strokeText("Play", 300, 230);
+
+        }
+    }
+    var playClickListener = function(e) {
+        var mouseX = e.clientX - mM.canvas.offsetLeft;
+        var mouseY = e.clientY - mM.canvas.offsetTop;
+
+        if (mouseX >= 300 && mouseX <= 460 && mouseY >= 160 && mouseY <= 230) {
+            mM.canvas.removeEventListener('mousemove', mouseMoveListener, false);
+            mM.canvas.removeEventListener('click', playClickListener, false);
+            play = true;
+            initCanvas();
+        }
+    }
+    mM.canvas.addEventListener('mousemove', mouseMoveListener, false);
+    mM.canvas.addEventListener('click', playClickListener, false);
+
+
+    mM.fillStyle = "red";
+    mM.fillRect(0, 0, 500, 600);
+
+    mM.fillStyle = "lightgray";
+    mM.font = "bold 70px Birds, sans-serif";
+
+    mM.fillText("DON'T", 70, 100);
+    mM.strokeText("DON'T", 70, 100);
+
+    mM.fillText("HIT", 30, 230);
+    mM.strokeText("HIT", 30, 230);
+
+    mM.fillText("THE", 110, 340);
+    mM.strokeText("THE", 110, 340);
+
+    mM.font = "bold 130px Birds, sans-serif";
+    mM.fillText("SPIKES", 50, 530);
+    mM.strokeText("SPIKES", 50, 530);
+
+    mM.font = "bold 10px sans-serif";
+    mM.fillText("\u00A9 Team Rose Champagne ", 350, 590);
+    mM.strokeText("", 300, 580);
+
+}
+
 function initCanvas() {
 
     var ctx = document.getElementById('my_canvas').getContext('2d');
@@ -15,6 +84,7 @@ function initCanvas() {
     var gameSpeed = 3;
     var score = 0;
     var game = true;
+
 
     var animateInterval = setInterval(animate, 15);
 
@@ -398,11 +468,13 @@ function initCanvas() {
     }
 
     function gameOver() {
+        clearInterval(animateInterval);
         alert("GAME OVER! \nYour score is " + score);
+        mainMenu();
     }
 
 }
 
 window.addEventListener('load', function(event) {
-    initCanvas();
+    mainMenu();
 });

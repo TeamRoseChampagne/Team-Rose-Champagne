@@ -43,14 +43,13 @@ function mainMenu() {
         var mouseY = e.clientY - ctx.canvas.offsetTop;
 
         if (mouseX >= 300 && mouseX <= 460 && mouseY >= 160 && mouseY <= 230) {
-            ctx.canvas.removeEventListener('mousemove', mouseMoveListener, false);
-            ctx.canvas.removeEventListener('click', playClickListener, false);
-            play = true;
+            document.removeEventListener('mousemove', mouseMoveListener, false);
+            document.removeEventListener('click', playClickListener, false);
             initCanvas();
         }
     }
-    ctx.canvas.addEventListener('mousemove', mouseMoveListener, false);
-    ctx.canvas.addEventListener('click', playClickListener, false);
+    document.addEventListener('mousemove', mouseMoveListener, false);
+    document.addEventListener('click', playClickListener, false);
 
 
     ctx.fillStyle = "red";
@@ -59,18 +58,18 @@ function mainMenu() {
     ctx.fillStyle = "white";
     ctx.font = "bold 70px Birds, sans-serif";
 
-    ctx.fillText("DON'T", 70, 100);
-    ctx.strokeText("DON'T", 70, 100);
+    ctx.fillText("DON'T!", 70, 100);
+    ctx.strokeText("DON'T!", 70, 100);
 
-    ctx.fillText("HIT", 30, 230);
-    ctx.strokeText("HIT", 30, 230);
+    ctx.fillText("HIT!", 30, 230);
+    ctx.strokeText("HIT!", 30, 230);
 
-    ctx.fillText("THE", 110, 340);
-    ctx.strokeText("THE", 110, 340);
+    ctx.fillText("THE!", 110, 340);
+    ctx.strokeText("THE!", 110, 340);
 
     ctx.font = "bold 130px Birds, sans-serif";
-    ctx.fillText("SPIKES", 50, 530);
-    ctx.strokeText("SPIKES", 50, 530);
+    ctx.fillText("SPIKES!", 50, 530);
+    ctx.strokeText("SPIKES!", 50, 530);
 
     ctx.font = "bold 10px sans-serif";
     ctx.fillText("\u00A9 Team Rose Champagne ", 350, 590);
@@ -91,6 +90,7 @@ function initCanvas() {
     var yDirection = 1;
     var gameSpeed = 3;
     var score = 0;
+    var pause = 0;
     var game = true;
 
 
@@ -171,9 +171,13 @@ function initCanvas() {
         });
 
         document.addEventListener('keydown', function(e) {
+            var keyPress = String.fromCharCode(e.keyCode);
+
+            if (keyPress == " ") {
                 jumpSound.play();
                 jump();
                 maxJump = birdY - 100;
+            }
         });
 
     }
@@ -487,7 +491,6 @@ function initCanvas() {
             if (mouseX >= 100 && mouseX <= 500 && mouseY >= 480 && mouseY <= 540) {
                 ctx.canvas.removeEventListener('mousemove', mouseMoveListener, false);
                 ctx.canvas.removeEventListener('click', playClickListener, false);
-                play = true;
                 mainMenu();
             }
         }

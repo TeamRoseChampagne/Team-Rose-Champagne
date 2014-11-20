@@ -1,6 +1,3 @@
 Team-Rose-Champagne
 ===================
-kdakasksad
-Velio - test
-goodlifeinc - test
-georgi - webstorm test
+DON'T HIT THE SPIKES!

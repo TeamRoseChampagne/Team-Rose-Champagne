@@ -22,7 +22,7 @@ function mainMenu() {
 
         if (mouseX >= 300 && mouseX <= 460 && mouseY >= 160 && mouseY <= 230) {
 
-            ctx.fillStyle = "white";
+            ctx.fillStyle = "#FFEC0C";
             ctx.font = "bold 80px Birds, sans-serif";
             ctx.fillText("Play", 300, 230);
             ctx.strokeText("Play", 300, 230);
@@ -31,7 +31,7 @@ function mainMenu() {
 
         else {
 
-            ctx.fillStyle = "lightgray";
+            ctx.fillStyle = "#50FF0C";
             ctx.font = "bold 80px Birds, sans-serif";
             ctx.fillText("Play", 300, 230);
             ctx.strokeText("Play", 300, 230);
@@ -169,6 +169,13 @@ function initCanvas() {
             jump();
             maxJump = birdY - 100;
         });
+
+        document.addEventListener('keydown', function(e) {
+                jumpSound.play();
+                jump();
+                maxJump = birdY - 100;
+        });
+
     }
 
     function landJump() {
@@ -457,7 +464,7 @@ function initCanvas() {
 
             if (mouseX >= 100 && mouseX <= 500 && mouseY >= 480 && mouseY <= 540) {
 
-                ctx.fillStyle = "white";
+                ctx.fillStyle = "#FFEC0C";
                 ctx.font = "bold 80px Birds, sans-serif";
                 ctx.fillText("Main menu", 100, 540);
                 ctx.strokeText("Main menu", 100, 540);
@@ -466,7 +473,7 @@ function initCanvas() {
 
             else {
 
-                ctx.fillStyle = "lightgray";
+                ctx.fillStyle = "#50FF0C";
                 ctx.font = "bold 80px Birds, sans-serif";
                 ctx.fillText("Main menu", 100, 540);
                 ctx.strokeText("Main menu", 100, 540);
@@ -504,6 +511,7 @@ function initCanvas() {
         ctx.fillText("\u00A9 Team Rose Champagne ", 350, 590);
         ctx.strokeText("", 300, 580);
 
+        var localScore = score;
         var highScore = document.getElementById('highScore').innerHTML;
         if (score > highScore) {
             document.getElementById('highScore').innerHTML = score;
@@ -513,8 +521,12 @@ function initCanvas() {
 
         ctx.drawImage(birdD, 410, 410);
         ctx.font = "bold 30px Birds, sans-serif";
-        ctx.fillText("high score: " + score, 50, 330);
-        ctx.strokeText("high score: " + score, 50, 330);
+        ctx.fillText("your score: " + localScore, 80, 330);
+        ctx.strokeText("your score: " + localScore, 80, 330);
+
+        ctx.fillStyle = "#FFEC0C";
+        ctx.fillText("high score: " + score, 280, 330);
+        ctx.strokeText("high score: " + score, 280, 330);
     }
 
 }

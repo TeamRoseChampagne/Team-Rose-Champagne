@@ -6,11 +6,17 @@
 body {
     margin: 40px;
     background: #666;
+    overflow: hidden;
 }
 
 #my_canvas {
     background: lightgray;
     border: #000 1px solid;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 #highScore {
